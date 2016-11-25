@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+  <Type>
+    <Name>BoincRpc.Project</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>StatusDescription</Name>
+        <GetScriptBlock>
+          $status = @()
+          if ($this.Suspended) {
+              $status += , "Suspended by user"
+          }
+          if ($this.DontRequestMoreWork) {
+              $status += , "Won't get new tasks"
+          }
+          if ($this.Ended) {
+              $status += , "Project ended - OK to remove"
+          }
+          if ($this.DetachWhenDone) {
+              $status += , "Will remove when tasks done"
+          }
+          if ($this.SchedulerRpcPending -ne "None") {
+              $status += , "Scheduler request pending"
+              switch ($this.SchedulerRpcPending) {
+                  "UserRequest" { $status += , "Requested by user" }
+                  "NeedWork" { $status += , "To fetch work" }
+                  "ResultsDue" { $status += , "To report completed tasks" }
+                  "TrickleUp" { $status += , "To send trickle-up message" }
+                  "AccountManagerRequest" { $status += , "Requested by account manager" }
+                  "Init" { $status += , "Project initialization" }
+                  "ProjectRequest" { $status += , "Requested by project" }
+              }
+          }
+          if ($this.SchedulerRpcInProgress) {
+              $status += , "Scheduler request in progress"
+          }
+          if ($this.TrickleUpPending) {
+              $status += , "Trickle up message pending"
+          }
+          $now = [DateTimeOffset]::Now
+          if ($this.MinRpcTime -gt $now) {
+              $deferral = $this.MinRpcTime - $now
+              $status += , ("Communication deferred {0:D2}:{1:mm':'ss}" -f ($deferral.Days * 24 + $deferral.Hours),$deferral)
+          }
+          return $status -join ", "
+        </GetScriptBlock>
+      </ScriptProperty>      
+    </Members>
+  </Type>
+  
+  <Type>
+    <Name>BoincRpc.Result</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>StatusDescription</Name>
+        <GetScriptBlock>
+          $status = ""
+          if ($this.CoprocessorMissing) {
+              $status += "GPU missing, "
+          }          
+          switch ($this.State) {
+              "New" { 
+                  $status += "New"
+              }
+              "FilesDownloading" { 
+                  if ($this.ReadyToReport) {
+                      $status += "Download failed"
+                  } else {
+                      $status += "Downloading"           
+                  }
+              }
+              "FilesDownloaded" {
+                  if ($this.Suspended) {
+                      $status += "Task suspended by user"
+                  } elseif ($this.ActiveTask) {
+                      if ($this.TooLarge) {
+                          $status += "Waiting for memory"
+                      } elseif ($this.NeedsSharedMemory) {
+                          $status += "Waiting for shared memory"
+                      } elseif ($this.SchedulerState -eq "Scheduled") {
+                          $status += "Running"
+                      } elseif ($this.SchedulerState -eq "Preempted") {
+                          $status += "Waiting to run"
+                      } elseif ($this.SchedulerState -eq "Uninitialized") {
+                          $status += "Ready to start"
+                      }
+                  } else {
+                      $status += "Ready to start"
+                  }
+                  if ($this.SchedulerWait) {
+                      if ($this.SchedulerWaitReason) {
+                          $status = "Postponed: " + $this.SchedulerWaitReason
+                      } else {
+                          $status = "Postponed"
+                      }
+                  }
+                  if ($this.NetworkWait) {
+                      $status = "Waiting for network access"
+                  }
+              }
+              "ComputeError" { 
+                  $status += "Computation error"
+              }
+              "FilesUploading" {
+                  if ($this.ReadyToReport) {
+                      $status += "Upload failed"
+                  } else {
+                      $status += "Uploading"          
+                  }
+              }
+              "Aborted" {
+                  switch ($this.ExitStatus) {
+                      "AbortedViaGui" { $status += "Aborted by user" }
+                      "AbortedByProject" { $status += "Aborted by project" }
+                      "UnstartedLate" { $status += "Aborted: not started by deadline" }
+                      "DiskLimitExceeded" { $status += "Aborted: task disk limit exceeded" }
+                      "TimeLimitExceeded" { $status += "Aborted: run time limit exceeded" }
+                      "MemoryLimitExceeded" { $status += "Aborted: memory limit exceeded" }
+                      default { $status += "Aborted" }
+                  }
+              }
+              default {
+                  if ($this.GotServerAck) {
+                      $status += "Acknowledged"
+                  } elseif ($this.ReadyToReport) {
+                      $status += "Ready to report"
+                  }
+              }          
+          }
+          if ($this.Resources) {
+              $status += " ({0})" -f $this.Resources
+          }
+          return $status
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+
+  <Type>
+    <Name>BoincRpc.FileTransfer</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>StatusDescription</Name>
+        <GetScriptBlock>
+          $status = ""
+          if ($this.IsUpload) {
+              $status += "Upload: "
+          } else {
+              $status += "Download: "
+          }
+          $now = [DateTimeOffset]::Now;
+          if ($this.NextRequestTime -gt $now) {
+              $deferral = $this.NextRequestTime - $now
+              $status += "retry in {0:D2}:{1:mm':'ss}" -f ($deferral.Days * 24 + $deferral.Hours),$deferral
+          } elseif ($this.Status -eq "GiveupDownload" -or $this.Status -eq "GiveupUpload") {
+              $status = "failed"
+          } else {
+              if ($this.TransferActive) {
+                  $status += "active"
+              } else {
+                  $status += "pending"
+              }
+          }
+          if ($this.ProjectBackOff.TotalSeconds -ne 0) {
+              $status += " (project backoff: {0:D2}:{1:mm':'ss})" -f ($this.ProjectBackOff.Days * 24 + $this.ProjectBackOff.Hours),$this.ProjectBackOff 
+          }
+          return $status
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+</Types>
