@@ -514,7 +514,7 @@ namespace BoincRpc
             CheckResponse(PerformRpc(request));
 
             return new AccountManagerRpcReply(PollRpc("<acct_mgr_rpc_poll/>", cancellationToken));
-        }        
+        }      
 
         public AccountManagerInfo GetAccountManagerInfo()
         {
@@ -526,6 +526,19 @@ namespace BoincRpc
             CheckResponse(response, "acct_mgr_info");
 
             return new AccountManagerInfo(response);
+        }
+
+        public AccountManagerRpcReply AccountManagerSync()
+        {
+            CheckDisposed();
+            CheckConnected();
+
+           XElement request = new XElement("acct_mgr_rpc",
+                new XElement("use_config_file", 1));
+
+            CheckResponse(PerformRpc(request));
+
+            return new AccountManagerRpcReply(PollRpc("<acct_mgr_rpc_poll/>", CancellationToken.None));
         }
 
         public ProjectInitStatus GetProjectInitStatus()
