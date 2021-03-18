@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Management.Automation;
+using System.Runtime.InteropServices;
 
 namespace PSBoinc
 {
@@ -73,23 +74,50 @@ namespace PSBoinc
             return session;
         }
 
-        private string ReadLocalGuiRpcPasswordFile()
+        private string GetLocalGuiRpcPasswordFilePath()
         {
             string dataDir = null;
 
-            using (RegistryKey boincSetupKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Space Sciences Laboratory, U.C. Berkeley\BOINC Setup", false))
-                if (boincSetupKey != null)
-                    dataDir = boincSetupKey.GetValue("DATADIR") as string;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                using (RegistryKey boincSetupKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Space Sciences Laboratory, U.C. Berkeley\BOINC Setup", false))
+                    if (boincSetupKey != null)
+                        dataDir = boincSetupKey.GetValue("DATADIR") as string;
 
-            if (dataDir != null)
-                dataDir = Environment.ExpandEnvironmentVariables(dataDir);
-            else
-                dataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "BOINC");
+                if (dataDir != null)
+                    dataDir = Environment.ExpandEnvironmentVariables(dataDir);
+                else
+                    dataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "BOINC");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                dataDir = "/var/lib/boinc-client";
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                dataDir = "/Library/Application Support/BOINC Data";
 
-            string passwordFilePath = Path.Combine(dataDir, "gui_rpc_auth.cfg");
+            return Path.Combine(dataDir, "gui_rpc_auth.cfg");
+        }
 
-            if (File.Exists(passwordFilePath))
-                return File.ReadAllText(passwordFilePath).Trim();
+        private string ReadLocalGuiRpcPasswordFile()
+        {
+            string passwordFilePath = GetLocalGuiRpcPasswordFilePath();
+
+            if (!File.Exists(passwordFilePath))
+                return null;
+
+            string[] lines;
+
+            try
+            {
+                lines = File.ReadAllLines(passwordFilePath);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // read access to gui_rpc_auth.cfg is often restricted to the BOINC user on non-Windows platforms
+                return null;
+            }
+
+            if (lines.Length >= 1)
+                return lines[0].Trim();
             else
                 return null;
         }
