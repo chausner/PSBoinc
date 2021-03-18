@@ -105,11 +105,19 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)\PSBoinc.dll" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
+    <PostBuildEvent>mkdir "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\PSBoinc.dll" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
 copy /Y "$(TargetDir)\PSBoinc.psd1" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
 copy /Y "$(TargetDir)\PSBoinc.format.ps1xml" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
 copy /Y "$(TargetDir)\PSBoinc.types.ps1xml" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
 copy /Y "$(TargetDir)\BoincRpc.dll" "%25USERPROFILE%25\Documents\WindowsPowerShell\Modules\PSBoinc"
+
+mkdir "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\PSBoinc.dll" "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\PSBoinc.psd1" "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\PSBoinc.format.ps1xml" "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\PSBoinc.types.ps1xml" "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
+copy /Y "$(TargetDir)\BoincRpc.dll" "%25USERPROFILE%25\Documents\PowerShell\Modules\PSBoinc"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
