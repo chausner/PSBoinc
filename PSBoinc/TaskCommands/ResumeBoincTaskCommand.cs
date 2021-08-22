@@ -12,7 +12,7 @@ namespace PSBoinc
         protected override void RpcProcessRecord()
         {
             foreach (Result result in InputObject)
-                RpcClient.PerformResultOperation(result, ResultOperation.Resume);
+                RpcClient.PerformResultOperationAsync(result, ResultOperation.Resume).GetAwaiter().GetResult();
         }
     }
 }

@@ -34,13 +34,13 @@ namespace PSBoinc
                     continue;
 
                 if (NoMoreWork.IsPresent)
-                    RpcClient.PerformProjectOperation(project, ProjectOperation.NoMoreWork);
+                    RpcClient.PerformProjectOperationAsync(project, ProjectOperation.NoMoreWork).GetAwaiter().GetResult();
                 if (AllowMoreWork.IsPresent)
-                    RpcClient.PerformProjectOperation(project, ProjectOperation.AllowMoreWork);
+                    RpcClient.PerformProjectOperationAsync(project, ProjectOperation.AllowMoreWork).GetAwaiter().GetResult();
                 if (DetachWhenDone.IsPresent)
-                    RpcClient.PerformProjectOperation(project, ProjectOperation.DetachWhenDone);
+                    RpcClient.PerformProjectOperationAsync(project, ProjectOperation.DetachWhenDone).GetAwaiter().GetResult();
                 if (DontDetachWhenDone.IsPresent)
-                    RpcClient.PerformProjectOperation(project, ProjectOperation.DontDetachWhenDone);
+                    RpcClient.PerformProjectOperationAsync(project, ProjectOperation.DontDetachWhenDone).GetAwaiter().GetResult();
             }
         }
     }

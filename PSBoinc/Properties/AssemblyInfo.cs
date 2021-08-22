@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PSBoinc")]
-[assembly: AssemblyCopyright("Copyright © Christoph Hausner 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016, 2021 Christoph Hausner")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

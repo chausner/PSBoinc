@@ -54,11 +54,11 @@ namespace PSBoinc
 
             BoincSession session = new BoincSession(Host, Port);
 
-            session.RpcClient.Connect(Host, Port);
+            session.RpcClient.ConnectAsync(Host, Port).GetAwaiter().GetResult();
 
             if (Password != null)
             {
-                bool authorized = session.RpcClient.Authorize(Password);
+                bool authorized = session.RpcClient.AuthorizeAsync(Password).GetAwaiter().GetResult();
 
                 if (!authorized)
                     throw new Exception("Error authenticating to BOINC client. Make sure the password is correct.");

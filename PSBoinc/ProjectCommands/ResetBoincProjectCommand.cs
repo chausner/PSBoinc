@@ -16,7 +16,7 @@ namespace PSBoinc
                 if (!ShouldProcess(project.ProjectName))
                     continue;
 
-                RpcClient.PerformProjectOperation(project, ProjectOperation.Reset);
+                RpcClient.PerformProjectOperationAsync(project, ProjectOperation.Reset).GetAwaiter().GetResult();
             }
         }
     }

@@ -28,7 +28,7 @@ namespace PSBoinc
         {
             if (ParameterSetName == "EmailPassword")
             {
-                AccountInfo accountInfo = RpcClient.LookupAccount(ProjectUrl, EmailAddress, Password, CancellationToken.None);
+                AccountInfo accountInfo = RpcClient.LookupAccountAsync(ProjectUrl, EmailAddress, Password, CancellationToken.None).GetAwaiter().GetResult();
 
                 if (accountInfo.ErrorCode != ErrorCode.Success)
                     throw new Exception(string.Format("Error looking up account. Error code: {0}. Error message: {1}", accountInfo.ErrorCode, accountInfo.ErrorMessage));
@@ -36,9 +36,9 @@ namespace PSBoinc
                 Authenticator = accountInfo.Authenticator;
             }
 
-            ProjectConfig projectConfig = RpcClient.GetProjectConfig(ProjectUrl, CancellationToken.None);            
+            ProjectConfig projectConfig = RpcClient.GetProjectConfigAsync(ProjectUrl, CancellationToken.None).GetAwaiter().GetResult();            
 
-            ProjectAttachReply attachReply = RpcClient.ProjectAttach(ProjectUrl, Authenticator, projectConfig.Name, CancellationToken.None);
+            ProjectAttachReply attachReply = RpcClient.ProjectAttachAsync(ProjectUrl, Authenticator, projectConfig.Name, CancellationToken.None).GetAwaiter().GetResult();
 
             if (attachReply.ErrorCode != ErrorCode.Success)
                 throw new Exception(string.Format("Error attaching project. Error code: {0}. Error message: {1}", attachReply.ErrorCode, string.Join(" ", attachReply.Messages)));

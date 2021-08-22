@@ -27,13 +27,13 @@ namespace PSBoinc
                 throw new PSArgumentException("At least one of the TaskMode, GpuMode and NetworkMode parameters needs to be specified.");
 
             if (TaskMode != Unset)
-                RpcClient.SetRunMode(TaskMode, Duration);
+                RpcClient.SetRunModeAsync(TaskMode, Duration).GetAwaiter().GetResult();
 
             if (GpuMode != Unset)
-                RpcClient.SetGpuMode(GpuMode, Duration);
+                RpcClient.SetGpuModeAsync(GpuMode, Duration).GetAwaiter().GetResult();
 
             if (NetworkMode != Unset)
-                RpcClient.SetNetworkMode(NetworkMode, Duration);
+                RpcClient.SetNetworkModeAsync(NetworkMode, Duration).GetAwaiter().GetResult();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace PSBoinc
     {
         protected override void RpcProcessRecord()
         {
-            WriteObject(RpcClient.GetHostInfo());
+            WriteObject(RpcClient.GetHostInfoAsync().GetAwaiter().GetResult());
         }
     }
 }

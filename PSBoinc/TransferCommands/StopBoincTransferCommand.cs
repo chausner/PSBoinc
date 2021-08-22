@@ -16,7 +16,7 @@ namespace PSBoinc
                 if (!ShouldProcess(transfer.Name))
                     continue;
 
-                RpcClient.PerformFileTransferOperation(transfer, FileTransferOperation.Abort);
+                RpcClient.PerformFileTransferOperationAsync(transfer, FileTransferOperation.Abort).GetAwaiter().GetResult();
             }
         }
     }

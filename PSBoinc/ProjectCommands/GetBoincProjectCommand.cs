@@ -13,7 +13,7 @@ namespace PSBoinc
 
         protected override void RpcProcessRecord()
         {
-            Project[] projects = RpcClient.GetProjectStatus();
+            Project[] projects = RpcClient.GetProjectStatusAsync().GetAwaiter().GetResult();
 
             if (Name != null)
                 projects = Utils.FilterByName(projects, p => p.ProjectName, Name, "Could not find a project with name \"{0}\".", "NoProjectFoundForGivenName", this);

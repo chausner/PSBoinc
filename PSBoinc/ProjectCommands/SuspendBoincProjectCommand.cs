@@ -12,7 +12,7 @@ namespace PSBoinc
         protected override void RpcProcessRecord()
         {
             foreach (Project project in InputObject)
-                RpcClient.PerformProjectOperation(project, ProjectOperation.Suspend);
+                RpcClient.PerformProjectOperationAsync(project, ProjectOperation.Suspend).GetAwaiter().GetResult();
         }
     }
 }

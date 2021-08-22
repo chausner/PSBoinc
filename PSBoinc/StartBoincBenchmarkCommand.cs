@@ -7,7 +7,7 @@ namespace PSBoinc
     {
         protected override void RpcProcessRecord()
         {
-            RpcClient.RunBenchmarks();
+            RpcClient.RunBenchmarksAsync().GetAwaiter().GetResult();
         }
     }
 }

@@ -19,14 +19,14 @@ namespace PSBoinc
 
         protected override void RpcProcessRecord()
         {
-            Result[] results = RpcClient.GetResults();
+            Result[] results = RpcClient.GetResultsAsync().GetAwaiter().GetResult();
 
             if (WorkunitName != null)
                 results = Utils.FilterByName(results, r => r.WorkunitName, WorkunitName, "Could not find a task with name \"{0}\".", "NoTaskFoundForGivenName", this);
 
             if (Project != null && results.Length != 0)
             {
-                Project[] projects = RpcClient.GetProjectStatus();
+                Project[] projects = RpcClient.GetProjectStatusAsync().GetAwaiter().GetResult();
 
                 HashSet<string> masterUrls = new HashSet<string>(
                     Utils.FilterByName(projects, p => p.ProjectName, Project, "Could not find a project with name \"{0}\".", "NoProjectFoundForGivenName", this)

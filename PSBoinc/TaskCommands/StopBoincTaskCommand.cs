@@ -16,7 +16,7 @@ namespace PSBoinc
                 if (!ShouldProcess(result.Name))
                     continue;
 
-                RpcClient.PerformResultOperation(result, ResultOperation.Abort);
+                RpcClient.PerformResultOperationAsync(result, ResultOperation.Abort).GetAwaiter().GetResult();
             }
         }
     }

@@ -10,7 +10,7 @@ namespace PSBoinc
             if (!ShouldProcess(BoincSession.Host))
                 return;
 
-            RpcClient.Quit();
+            RpcClient.QuitAsync().GetAwaiter().GetResult();
         }
     }
 }

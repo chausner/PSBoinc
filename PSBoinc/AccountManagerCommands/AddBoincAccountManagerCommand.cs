@@ -22,7 +22,7 @@ namespace PSBoinc
 
         protected override void RpcProcessRecord()
         {
-            AccountManagerRpcReply reply = RpcClient.AccountManagerAttach(Url, UserName, Password, CancellationToken.None);
+            AccountManagerRpcReply reply = RpcClient.AccountManagerAttachAsync(Url, UserName, Password, CancellationToken.None).GetAwaiter().GetResult();
 
             if (reply.ErrorCode != ErrorCode.Success)
                 throw new Exception(string.Format("Account manager operation failed. Error code: {0}. Error message: {1}", reply.ErrorCode, string.Join(" ", reply.Messages)));

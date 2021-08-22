@@ -1,4 +1,4 @@
-﻿@{
+@{
 
 # Die diesem Manifest zugeordnete Skript- oder Binärmoduldatei.
 RootModule = 'PSBoinc.dll'
@@ -19,7 +19,7 @@ Author = 'Christoph Hausner'
 CompanyName = ''
 
 # Urheberrechtserklärung für dieses Modul
-Copyright = '(c) 2016 Christoph Hausner. All rights reserved.'
+Copyright = '(c) 2016, 2021 Christoph Hausner. All rights reserved.'
 
 # Beschreibung der von diesem Modul bereitgestellten Funktionen
 Description = 'Cmdlets for managing BOINC clients on local and remote hosts'
@@ -34,7 +34,7 @@ PowerShellVersion = '3.0'
 # PowerShellHostVersion = ''
 
 # Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-DotNetFrameworkVersion = '4.5'
+DotNetFrameworkVersion = '4.6.1'
 
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
 CLRVersion = '4.0'

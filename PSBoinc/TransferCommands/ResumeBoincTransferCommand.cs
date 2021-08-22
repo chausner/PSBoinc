@@ -12,7 +12,7 @@ namespace PSBoinc
         protected override void RpcProcessRecord()
         {
             foreach (FileTransfer transfer in InputObject)
-                RpcClient.PerformFileTransferOperation(transfer, FileTransferOperation.Retry);
+                RpcClient.PerformFileTransferOperationAsync(transfer, FileTransferOperation.Retry).GetAwaiter().GetResult();
         }
     }
 }

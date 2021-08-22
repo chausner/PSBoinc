@@ -16,7 +16,7 @@ namespace PSBoinc
                 if (!ShouldProcess(project.ProjectName))
                     continue;
 
-                RpcClient.PerformProjectOperation(project, ProjectOperation.Detach);
+                RpcClient.PerformProjectOperationAsync(project, ProjectOperation.Detach).GetAwaiter().GetResult();
             }
         }
     }

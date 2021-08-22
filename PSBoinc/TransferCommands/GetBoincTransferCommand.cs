@@ -19,14 +19,14 @@ namespace PSBoinc
 
         protected override void RpcProcessRecord()
         {
-            FileTransfer[] transfers = RpcClient.GetFileTransfers();
+            FileTransfer[] transfers = RpcClient.GetFileTransfersAsync().GetAwaiter().GetResult();
 
             if (Name != null)
                 transfers = Utils.FilterByName(transfers, t => t.Name, Name, "Could not find a transfer with name \"{0}\".", "NoTransferFoundForGivenName", this);
 
             if (Project != null && transfers.Length != 0)
             {
-                Project[] projects = RpcClient.GetProjectStatus();
+                Project[] projects = RpcClient.GetProjectStatusAsync().GetAwaiter().GetResult();
 
                 HashSet<string> masterUrls = new HashSet<string>(
                     Utils.FilterByName(projects, p => p.ProjectName, Project, "Could not find a project with name \"{0}\".", "NoProjectFoundForGivenName", this)

@@ -14,7 +14,7 @@ namespace PSBoinc
 
         protected override void RpcProcessRecord()
         {
-            Notice[] notices = RpcClient.GetNotices(0, !BoincSession.Authenticated);
+            Notice[] notices = RpcClient.GetNoticesAsync(0, !BoincSession.Authenticated).GetAwaiter().GetResult();
 
             if (Last != -1 && notices.Length > Last)
                 notices = notices.Skip(notices.Length - Last).ToArray();

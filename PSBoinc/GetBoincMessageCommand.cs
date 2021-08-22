@@ -18,12 +18,12 @@ namespace PSBoinc
             Message[] messages;
 
             if (Last == -1)
-                messages = RpcClient.GetMessages();
+                messages = RpcClient.GetMessagesAsync().GetAwaiter().GetResult();
             else
             {
-                int messageCount = RpcClient.GetMessageCount();
+                int messageCount = RpcClient.GetMessageCountAsync().GetAwaiter().GetResult();
 
-                messages = RpcClient.GetMessages(Math.Max(messageCount - Last, 0));
+                messages = RpcClient.GetMessagesAsync(Math.Max(messageCount - Last, 0)).GetAwaiter().GetResult();
 
                 if (messages.Length > Last)
                     messages = messages.Skip(messages.Length - Last).ToArray();
