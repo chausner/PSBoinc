@@ -9,6 +9,9 @@
   <Cmdlets>
     <CmdletObject verb="Add" noun="BoincAccountManager">
       <Name>Add-BoincAccountManager</Name>
+      <Syntax>
+        <string>Add-BoincAccountManager [-Url] &lt;String&gt; [-UserName] &lt;String&gt; [-Password] &lt;String&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Attaches the BOINC client to an account manager.</Synopsis>
         <Description>Add-BoincAccountManager attaches a client to an account manager using the specified credentials. If the client is already attached to an account manager, it will be detached and attached to the new manager.</Description>
@@ -23,9 +26,6 @@
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Url UserName Password Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Add-BoincAccountManager [-Url] &lt;String&gt; [-UserName] &lt;String&gt; [-Password] &lt;String&gt;</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="false">
           <Name>Url</Name>
@@ -72,11 +72,15 @@
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Add" noun="BoincProject">
       <Name>Add-BoincProject</Name>
+      <Syntax>
+        <string>Add-BoincProject [-ProjectUrl] &lt;String&gt; [-EmailAddress] &lt;String&gt; [-Password] &lt;String&gt;</string>
+        <string>Add-BoincProject [-ProjectUrl] &lt;String&gt; -Authenticator &lt;String&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Attaches the BOINC client to a project.</Synopsis>
         <Description>Add-BoincProject attaches a client to the specified BOINC project, either using a pair of email/username and password or using an authenticator key.
@@ -94,10 +98,6 @@ Attachment using an authenticator key is typically used in combination with weak
         <CommandParameterSetInfo2 Name="EmailPassword" Params="ProjectUrl EmailAddress Password Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
         <CommandParameterSetInfo2 Name="Authenticator" Params="ProjectUrl Authenticator Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Add-BoincProject [-ProjectUrl] &lt;String&gt; [-EmailAddress] &lt;String&gt; [-Password] &lt;String&gt;</string>
-        <string>Add-BoincProject [-ProjectUrl] &lt;String&gt; -Authenticator &lt;String&gt;</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="false">
           <Name>ProjectUrl</Name>
@@ -184,11 +184,14 @@ Attachment using an authenticator key is typically used in combination with weak
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Enter" noun="BoincSession">
       <Name>Enter-BoincSession</Name>
+      <Syntax>
+        <string>Enter-BoincSession [[-Host] &lt;String&gt;] [[-Password] &lt;String&gt;] [-Port &lt;Int32&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Opens a new BOINC session by connecting to a local or remote BOINC client.</Synopsis>
         <Description>Enter-BoincSession initiates a new connection to a local or remote BOINC client and closes any previously opened session. The currently active session determines the target client for all other PSBoinc cmdlets. Thus, Enter-BoincSession must be run before any of the other PSBoinc cmdlets can be used.
@@ -207,9 +210,6 @@ The Enter-BoincSession sets the $BoincSession variable to a BoincSession object,
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Host Password Port Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Enter-BoincSession [[-Host] &lt;String&gt;] [[-Password] &lt;String&gt;] [-Port &lt;Int32&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="false">
           <Name>Host</Name>
@@ -268,11 +268,14 @@ The Enter-BoincSession sets the $BoincSession variable to a BoincSession object,
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Exit" noun="BoincSession">
       <Name>Exit-BoincSession</Name>
+      <Syntax>
+        <string>Exit-BoincSession</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Disconnects from the BOINC client in the currently active session and closes the session.</Synopsis>
         <Description>The Exit-BoincSession cmdlet closes a session that was previously opened by Enter-BoincSession and terminates the underlying connection to the local or remote BOINC client.
@@ -289,9 +292,6 @@ The session variable $BoincSession is unset in the process.</Description>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Exit-BoincSession</string>
-      </Syntax>
       <Parameters />
       <Examples />
       <RelatedLinks>
@@ -300,11 +300,14 @@ The session variable $BoincSession is unset in the process.</Description>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincHostInformation">
       <Name>Get-BoincHostInformation</Name>
+      <Syntax>
+        <string>Get-BoincHostInformation</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves hardware capabilities and other information about the connected host.</Synopsis>
         <Description>Get-BoincHostInformation returns a HostInfo object containing information about the processor, cache, memory, operating system and network properties of the host running the BOINC client.
@@ -321,17 +324,17 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincHostInformation</string>
-      </Syntax>
       <Parameters />
       <Examples />
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincMessage">
       <Name>Get-BoincMessage</Name>
+      <Syntax>
+        <string>Get-BoincMessage [-Last &lt;Int32&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves messages from the BOINC client log.</Synopsis>
         <Description>Without parameters, Get-BoincMessage returns all entries that are currently in the message log of the connected client. By specifying the Last parameter, only the most recent log entries are returned.</Description>
@@ -346,9 +349,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Last Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincMessage [-Last &lt;Int32&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Last</Name>
@@ -370,11 +370,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
         </Example>
       </Examples>
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincNotice">
       <Name>Get-BoincNotice</Name>
+      <Syntax>
+        <string>Get-BoincNotice [-Last &lt;Int32&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves notices from the BOINC client.</Synopsis>
         <Description>Without parameters, Get-BoincNotice returns all entries that are currently in the notices list of the connected client. By specifying the Last parameter, only the most recent notices are returned.</Description>
@@ -389,9 +392,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Last Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincNotice [-Last &lt;Int32&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Last</Name>
@@ -406,11 +406,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       </Parameters>
       <Examples />
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincProject">
       <Name>Get-BoincProject</Name>
+      <Syntax>
+        <string>Get-BoincProject [[-Name] &lt;String[]&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Gets information on one or more projects that the client is attached to.</Synopsis>
         <Description>Get-BoincProject returns Project objects for one ore more projects that the client is attached to. If the Name parameter is not specified, all projects are returned. If the Name parameter contains wildcards, all matching projects are returned.</Description>
@@ -425,9 +428,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Name Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincProject [[-Name] &lt;String[]&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="true">
           <Name>Name</Name>
@@ -490,11 +490,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincStatistics">
       <Name>Get-BoincStatistics</Name>
+      <Syntax>
+        <string>Get-BoincStatistics [[-Project] &lt;String[]&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves credit statistics for one or more projects.</Synopsis>
         <Description>Get-BoincStatistics retrieves daily statistics on total and average credit for user and host from the BOINC client. If the Project parameter is specified, statistics are only returned for the specified projects.</Description>
@@ -509,9 +512,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Project Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincStatistics [[-Project] &lt;String[]&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="true">
           <Name>Project</Name>
@@ -533,11 +533,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
         </Example>
       </Examples>
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincStatus">
       <Name>Get-BoincStatus</Name>
+      <Syntax>
+        <string>Get-BoincStatus</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves BOINC client status information, including current preferences for tasks, GPUs and network access.</Synopsis>
         <Description>Get-BoincStatus returns information on the current status of the client. Among other settings, this includes the current and permanent preferences for tasks, GPUs and network access.</Description>
@@ -552,9 +555,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincStatus</string>
-      </Syntax>
       <Parameters />
       <Examples />
       <RelatedLinks>
@@ -563,11 +563,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincTask">
       <Name>Get-BoincTask</Name>
+      <Syntax>
+        <string>Get-BoincTask [[-WorkunitName] &lt;String[]&gt;] [-Project &lt;String[]&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Gets information on the tasks currently managed by the BOINC client.</Synopsis>
         <Description>Get-BoincTask returns a Result object for each task currently managed by the client. The WorkunitName and Project parameters can be used to filter the list of returned tasks by workunit name and project.</Description>
@@ -582,9 +585,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="WorkunitName Project Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincTask [[-WorkunitName] &lt;String[]&gt;] [-Project &lt;String[]&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="true">
           <Name>WorkunitName</Name>
@@ -629,11 +629,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Get" noun="BoincTransfer">
       <Name>Get-BoincTransfer</Name>
+      <Syntax>
+        <string>Get-BoincTransfer [[-Name] &lt;String[]&gt;] [-Project &lt;String[]&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Retrieves information on all active and pending file transfers managed by the BOINC client.</Synopsis>
         <Description>Get-BoincTransfer retrieves information on all file uploads and downloads that are currently managed by the client. The Name and Project parameters can be used to filter the list of returned transfers by name and project.</Description>
@@ -648,9 +651,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Name Project Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Get-BoincTransfer [[-Name] &lt;String[]&gt;] [-Project &lt;String[]&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="0" globbing="true">
           <Name>Name</Name>
@@ -684,11 +684,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Remove" noun="BoincAccountManager">
       <Name>Remove-BoincAccountManager</Name>
+      <Syntax>
+        <string>Remove-BoincAccountManager [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Detaches the BOINC client from an account manager.</Synopsis>
         <Description>Remove-BoincAccountManager detaches a client from an attached account manager. If the client is not attached to any account manager, this command completes without action.</Description>
@@ -703,9 +706,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Remove-BoincAccountManager [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -722,8 +722,8 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -739,11 +739,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Remove" noun="BoincProject">
       <Name>Remove-BoincProject</Name>
+      <Syntax>
+        <string>Remove-BoincProject -InputObject &lt;Project[]&gt; [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Detaches the client from one or more projects.</Synopsis>
         <Description>Remove-BoincProject detaches the client from the specified projects, aborting all associated tasks in the process. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -758,9 +761,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Remove-BoincProject -InputObject &lt;Project[]&gt; [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -777,8 +777,8 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -810,11 +810,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Reset" noun="BoincProject">
       <Name>Reset-BoincProject</Name>
+      <Syntax>
+        <string>Reset-BoincProject -InputObject &lt;Project[]&gt; [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Resets one or more BOINC projects.</Synopsis>
         <Description>Reset-BoincProject causes the client to reset the specified projects, aborting all associated tasks in the process. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -829,9 +832,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Reset-BoincProject -InputObject &lt;Project[]&gt; [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -848,8 +848,8 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -881,11 +881,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Resume" noun="BoincProject">
       <Name>Resume-BoincProject</Name>
+      <Syntax>
+        <string>Resume-BoincProject -InputObject &lt;Project[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Resumes one or more BOINC projects.</Synopsis>
         <Description>Resume-BoincProject causes the client to resume the specified projects, allowing computations on associated tasks to continue. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -900,9 +903,6 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Resume-BoincProject -InputObject &lt;Project[]&gt;</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="Project[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
@@ -932,11 +932,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Resume" noun="BoincTask">
       <Name>Resume-BoincTask</Name>
+      <Syntax>
+        <string>Resume-BoincTask -InputObject &lt;Result[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Resumes one or more tasks.</Synopsis>
         <Description>Resume-BoincTask causes the client to resume the specified tasks. The command reads Result objects from the pipeline or from the InputObject parameter.</Description>
@@ -951,10 +954,7 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Resume-BoincTask -InputObject &lt;Result[]&gt;</string>
-      </Syntax>
-      <Parameters>        
+      <Parameters>
         <ParameterDescription type="Result[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
           <Attributes>
@@ -987,11 +987,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Resume" noun="BoincTransfer">
       <Name>Resume-BoincTransfer</Name>
+      <Syntax>
+        <string>Resume-BoincTransfer -InputObject &lt;FileTransfer[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Causes the client to retry one or more failed file transfers.</Synopsis>
         <Description>Resume-BoincTransfer causes the client to retry the specified file transfers if they could not be completed earlier. The command reads FileTransfer objects from the pipeline or from the InputObject parameter.</Description>
@@ -1006,10 +1009,7 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Resume-BoincTransfer -InputObject &lt;FileTransfer[]&gt;</string>
-      </Syntax>
-      <Parameters>        
+      <Parameters>
         <ParameterDescription type="FileTransfer[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
           <Attributes>
@@ -1038,11 +1038,14 @@ For a full list of all properties returned, see the BoincRpc.HostInfo type.</Des
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Set" noun="BoincMode">
       <Name>Set-BoincMode</Name>
+      <Syntax>
+        <string>Set-BoincMode [-TaskMode &lt;Mode&gt;] [-GpuMode &lt;Mode&gt;] [-NetworkMode &lt;Mode&gt;] [-Duration &lt;TimeSpan&gt;]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Sets preferences on when the client should run tasks, make use of GPUs and transfer files over the network.</Synopsis>
         <Description>Set-BoincMode sets usage preferences that control when the client is allowed to run tasks, use GPUs for computations, and upload or download data over the network. Optionally, a time limit can be specified after which the preferences are restored to their permanent setting.
@@ -1061,9 +1064,6 @@ The Get-BoincStatus cmdlet can be used for retrieving the currently active and p
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="TaskMode GpuMode NetworkMode Duration Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Set-BoincMode [-TaskMode &lt;Mode&gt;] [-GpuMode &lt;Mode&gt;] [-NetworkMode &lt;Mode&gt;] [-Duration &lt;TimeSpan&gt;]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="TimeSpan" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Duration</Name>
@@ -1123,11 +1123,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Set" noun="BoincProject">
       <Name>Set-BoincProject</Name>
+      <Syntax>
+        <string>Set-BoincProject -InputObject &lt;Project[]&gt; [-NoMoreWork] [-AllowMoreWork] [-DetachWhenDone] [-DontDetachWhenDone] [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Changes the work fetch policy and other settings for one or more BOINC projects.</Synopsis>
         <Description>Set-BoincProject with switches "NoMoreWork" and "AllowMoreWork" control whether the client should stop requesting new work from the specified projects. Switches "DetachWhenDone" and "DontDetachWhenDone" control whether the client should detach the specified projects when all associated tasks have been completed. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -1142,9 +1145,6 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject NoMoreWork AllowMoreWork DetachWhenDone DontDetachWhenDone Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Set-BoincProject -InputObject &lt;Project[]&gt; [-NoMoreWork] [-AllowMoreWork] [-DetachWhenDone] [-DontDetachWhenDone] [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>NoMoreWork</Name>
@@ -1197,8 +1197,8 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -1230,11 +1230,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Start" noun="BoincBenchmark">
       <Name>Start-BoincBenchmark</Name>
+      <Syntax>
+        <string>Start-BoincBenchmark</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Causes the client to perform a CPU benchmark run.</Synopsis>
         <Description>Start-BoincBenchmark causes the BOINC client to update the cached CPU benchmark results by re-running the benchmarks.</Description>
@@ -1249,17 +1252,17 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Start-BoincBenchmark</string>
-      </Syntax>
       <Parameters />
       <Examples />
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Stop" noun="Boinc">
       <Name>Stop-Boinc</Name>
+      <Syntax>
+        <string>Stop-Boinc [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Shuts down the connected BOINC client and all running tasks and transfers.</Synopsis>
         <Description>Stop-Boinc shuts down the connected client and with it all currently running tasks and transfers. The command does not close the BOINC session. After the client has shut down, the session will become disconnected and can no longer be used for controlling the client.</Description>
@@ -1274,9 +1277,6 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Stop-Boinc [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -1293,8 +1293,8 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -1305,11 +1305,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       </Parameters>
       <Examples />
       <RelatedLinks />
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Stop" noun="BoincTask">
       <Name>Stop-BoincTask</Name>
+      <Syntax>
+        <string>Stop-BoincTask -InputObject &lt;Result[]&gt; [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Aborts one or more tasks.</Synopsis>
         <Description>Stop-BoincTask causes the client to abort the specified tasks. The command reads Result objects from the pipeline or from the InputObject parameter.</Description>
@@ -1324,9 +1327,6 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Stop-BoincTask -InputObject &lt;Result[]&gt; [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -1343,8 +1343,8 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -1384,11 +1384,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Stop" noun="BoincTransfer">
       <Name>Stop-BoincTransfer</Name>
+      <Syntax>
+        <string>Stop-BoincTransfer -InputObject &lt;FileTransfer[]&gt; [-WhatIf] [-Confirm]</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Aborts one or more file transfers.</Synopsis>
         <Description>Stop-BoincTransfer causes the client to abort the specified file transfers. The command reads FileTransfer objects from the pipeline or from the InputObject parameter.</Description>
@@ -1403,9 +1406,6 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
       </ParamSets>
-      <Syntax>
-        <string>Stop-BoincTransfer -InputObject &lt;FileTransfer[]&gt; [-WhatIf] [-Confirm]</string>
-      </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>WhatIf</Name>
@@ -1422,8 +1422,8 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>Confirm</Name>
           <Attributes>
-            <string>System.Management.Automation.AliasAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
           </Attributes>
           <Aliases>
             <string>cf</string>
@@ -1459,11 +1459,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Suspend" noun="BoincProject">
       <Name>Suspend-BoincProject</Name>
+      <Syntax>
+        <string>Suspend-BoincProject -InputObject &lt;Project[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Suspends one or more BOINC projects.</Synopsis>
         <Description>Suspend-BoincProject causes the client to suspend the specified projects, stopping all computations on associated tasks. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -1478,10 +1481,7 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Suspend-BoincProject -InputObject &lt;Project[]&gt;</string>
-      </Syntax>
-      <Parameters>        
+      <Parameters>
         <ParameterDescription type="Project[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
           <Attributes>
@@ -1510,11 +1510,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Suspend" noun="BoincTask">
       <Name>Suspend-BoincTask</Name>
+      <Syntax>
+        <string>Suspend-BoincTask -InputObject &lt;Result[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Suspends one or more tasks.</Synopsis>
         <Description>Suspend-BoincTask causes the client to suspend the specified tasks. The command reads Result objects from the pipeline or from the InputObject parameter.</Description>
@@ -1529,10 +1532,7 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Suspend-BoincTask -InputObject &lt;Result[]&gt;</string>
-      </Syntax>
-      <Parameters>        
+      <Parameters>
         <ParameterDescription type="Result[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
           <Attributes>
@@ -1565,11 +1565,14 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
     <CmdletObject verb="Update" noun="BoincProject">
       <Name>Update-BoincProject</Name>
+      <Syntax>
+        <string>Update-BoincProject -InputObject &lt;Project[]&gt;</string>
+      </Syntax>
       <GeneralHelp>
         <Synopsis>Updates one or more BOINC projects.</Synopsis>
         <Description>Update-BoincProject forces the client to update one or more projects, reporting any finished tasks, updating project statistics and possibly requesting new work in the process. The command reads Project objects from the pipeline or from the InputObject parameter.</Description>
@@ -1584,10 +1587,7 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
       <ParamSets>
         <CommandParameterSetInfo2 Name="__AllParameterSets" Params="InputObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
-      <Syntax>
-        <string>Update-BoincProject -InputObject &lt;Project[]&gt;</string>
-      </Syntax>
-      <Parameters>        
+      <Parameters>
         <ParameterDescription type="Project[]" varLen="true" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
           <Name>InputObject</Name>
           <Attributes>
@@ -1612,7 +1612,41 @@ PS C:\&gt;Set-BoincMode -TaskMode Auto -Duration "00:30:00"</Cmd>
           <LinkUrl />
         </RelatedLink>
       </RelatedLinks>
-      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Update" noun="BoincAccountManager">
+      <Name>Update-BoincAccountManager</Name>
+      <Syntax>
+        <string>Update-BoincAccountManager</string>
+      </Syntax>
+      <GeneralHelp>
+        <Synopsis>Updates the currently attached account manager.</Synopsis>
+        <Description>Update-BoincAccountManager forces the client to synchronize with the current account manager.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Parameters />
+      <Examples />
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>Add-BoincAccountManager</LinkText>
+          <LinkUrl />
+        </RelatedLink>
+        <RelatedLink>
+          <LinkText>Remove-BoincAccountManager</LinkText>
+          <LinkUrl />
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" ps51="false" ps60="false" ps61="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w10="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" w2k16s="false" w2k16d="false" />
       <Publish>false</Publish>
     </CmdletObject>
   </Cmdlets>
