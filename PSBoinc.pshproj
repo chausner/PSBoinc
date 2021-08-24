@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Binary" mclass="Module" useSupports="false">
   <Name>PSBoinc</Name>
-  <Version>1.0</Version>
+  <Version>1.1</Version>
   <Description>Cmdlets for managing BOINC clients on local and remote hosts</Description>
   <HasManifest>true</HasManifest>
   <OverridePostCount>false</OverridePostCount>

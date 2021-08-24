@@ -1,10 +1,10 @@
-@{
+﻿@{
 
 # Die diesem Manifest zugeordnete Skript- oder Binärmoduldatei.
 RootModule = 'PSBoinc.dll'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '1.0'
+ModuleVersion = '1.1'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()
@@ -99,7 +99,12 @@ PrivateData = @{
         # IconUri = ''
 
         # 'ReleaseNotes' des Moduls
-        # ReleaseNotes = ''
+        ReleaseNotes = 'Version 1.1 introduces the following changes and improvements:
+
+- Added support for PowerShell Core on Linux and macOS
+- Added Update-BoincAccountManager cmdlet
+- Updated underlying BoincRpc library to be up-to-date as of BOINC 7.18.1
+- Fixed broken DetachWhenDone and DontDetachWhenDone switches of Set-BoincProject'
 
     } # Ende der PSData-Hashtabelle
 
