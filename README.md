@@ -1,9 +1,12 @@
 # PSBoinc
 PowerShell module for managing BOINC clients on local and remote hosts
 
-[PSBoinc in PSGallery](https://www.powershellgallery.com/packages/PSBoinc)
+![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/PSBoinc)
+[![license](https://img.shields.io/github/license/chausner/PSBoinc.svg)](https://github.com/chausner/PSBoinc/blob/master/LICENSE)
 
-Install via ```Install-Module PSBoinc -Scope CurrentUser```
+Installation
+------------
+Install via ```Install-Module PSBoinc -Scope CurrentUser```.
 
 Usage
 -----
@@ -30,19 +33,19 @@ Get-Help Add-BoincAccountManager -Detailed
 
 Examples
 --------
-Do not receive new work from any project
+Do not receive new work from any project:
 ```powershell
 Get-BoincProject | Set-BoincProject -NoMoreWork
 ```
-Abort all tasks that are at least 3 days behind their deadline
+Abort all tasks that are at least 3 days behind their deadline:
 ```powershell
 Get-BoincTask | where { ([DateTimeOffset]::Now - $_.ReportDeadline).TotalDays -ge 3 } | Stop-BoincTask
 ```
-Show a list of all current tasks from Rosetta@home and PrimeGrid, grouped by project and sorted by progress
+Show a list of all current tasks from Rosetta@home and PrimeGrid, grouped by project and sorted by progress:
 ```powershell
 Get-BoincTask -Project rosetta*,prime* | sort FractionDone -Descending | fl -GroupBy ProjectUrl -Property WorkunitName,FractionDone
 ```
-Suspend tasks after their next checkpoint and shutdown the machine
+Suspend tasks after their next checkpoint and shutdown the machine:
 ```powershell
 while ($true)
 {
@@ -55,14 +58,14 @@ while ($true)
 }
 Stop-Computer
 ```
-Attach multiple remote clients to a project
+Attach multiple remote clients to a project:
 ```powershell
 "pc-01","pc-02","pc-03" | foreach { 
     Enter-BoincSession $_ "9096083b1c5a02d473a81784eb8e0862"
     Add-BoincProject "http://boinc.bakerlab.org/rosetta" "johndoe@example.com" "P@ssW0rD!"
 }
 ```
-Show benchmark results for a list of remote clients
+Show benchmark results for a list of remote clients:
 ```powershell
 "pc-01","pc-02","pc-03" | foreach { 
     Enter-BoincSession $_
