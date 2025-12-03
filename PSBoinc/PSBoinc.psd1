@@ -7,7 +7,7 @@ RootModule = 'PSBoinc.dll'
 ModuleVersion = '1.1'
 
 # Unterstützte PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Desktop','Core')
 
 # ID zur eindeutigen Kennzeichnung dieses Moduls
 GUID = '7ca4b834-aaee-4033-b3b0-e24c5f1bcab6'
@@ -25,7 +25,7 @@ Copyright = '(c) 2016, 2021 Christoph Hausner. All rights reserved.'
 Description = 'Cmdlets for managing BOINC clients on local and remote hosts'
 
 # Die für dieses Modul mindestens erforderliche Version des Windows PowerShell-Moduls
-PowerShellVersion = '3.0'
+PowerShellVersion = '5.1'
 
 # Der Name des für dieses Modul erforderlichen Windows PowerShell-Hosts
 # PowerShellHostName = ''
@@ -34,10 +34,10 @@ PowerShellVersion = '3.0'
 # PowerShellHostVersion = ''
 
 # Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-DotNetFrameworkVersion = '4.6.1'
+# DotNetFrameworkVersion = '4.6.1'
 
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-CLRVersion = '4.0'
+# CLRVersion = '4.0'
 
 # Die für dieses Modul erforderliche Prozessorarchitektur ("Keine", "X86", "Amd64").
 # ProcessorArchitecture = ''

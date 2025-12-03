@@ -8,6 +8,8 @@ Installation
 ------------
 Install via ```Install-Module PSBoinc -Scope CurrentUser```.
 
+When building from source, the post-build step copies the module into `%USERPROFILE%\Documents\WindowsPowerShell\Modules\PSBoinc` and `%USERPROFILE%\Documents\PowerShell\Modules\PSBoinc` on Windows, and into `~/.local/share/powershell/Modules/PSBoinc` on Linux for easy testing.
+
 Usage
 -----
 RPC cmdlets operate in local or remote sessions. Local sessions are authenticated automatically:
