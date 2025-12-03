@@ -11,7 +11,7 @@ namespace PSBoinc
     {
         [Parameter(Position = 0)]
         [ValidateNotNullOrEmpty]
-        public string Host { get; set; }
+        public new string Host { get; set; }
 
         [Parameter(Position = 1)]
         [ValidateNotNullOrEmpty]
