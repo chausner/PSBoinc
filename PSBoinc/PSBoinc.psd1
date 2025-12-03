@@ -4,7 +4,7 @@
 RootModule = 'PSBoinc.dll'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '1.1'
+ModuleVersion = '1.2'
 
 # Unterstützte PSEditions
 CompatiblePSEditions = @('Desktop','Core')
@@ -19,7 +19,7 @@ Author = 'Christoph Hausner'
 CompanyName = ''
 
 # Urheberrechtserklärung für dieses Modul
-Copyright = '(c) 2016, 2021 Christoph Hausner. All rights reserved.'
+Copyright = '(c) 2016, 2021, 2025 Christoph Hausner. All rights reserved.'
 
 # Beschreibung der von diesem Modul bereitgestellten Funktionen
 Description = 'Cmdlets for managing BOINC clients on local and remote hosts'
@@ -99,12 +99,10 @@ PrivateData = @{
         # IconUri = ''
 
         # 'ReleaseNotes' des Moduls
-        ReleaseNotes = 'Version 1.1 introduces the following changes and improvements:
+        ReleaseNotes = 'Version 1.2 introduces the following changes and improvements:
 
-- Added support for PowerShell Core on Linux and macOS
-- Added Update-BoincAccountManager cmdlet
-- Updated underlying BoincRpc library to be up-to-date as of BOINC 7.18.1
-- Fixed broken DetachWhenDone and DontDetachWhenDone switches of Set-BoincProject'
+- Rebuilt the binary module for .NET Standard 2.0 so it can be imported in the latest PowerShell 7 releases on Windows and Linux.
+- Raised the minimum supported PowerShell version to 5.1.'
 
     } # Ende der PSData-Hashtabelle
 
